@@ -36,7 +36,7 @@ Indicates the number of space characters to use as white space for indenting pur
 
 ### +log([msg])
 
-Logs a message to the console. This method is mostly the same as `console.log()`.
+Logs a message to the console. This method is mostly the same as [`console.log()`](https://docs.scriptable.app/console/#log).
 
 ```typescript
 +log(msg?: any): void
@@ -61,7 +61,7 @@ Logs a message to the console. This method is mostly the same as `console.log()`
 
 ### +warn([msg])
 
-Logs a warning message to the msg. This methid is mostly the same as `console.warn()`.
+Logs a warning message to the msg. This methid is mostly the same as [`console.warn()`](https://docs.scriptable.app/console/#warn).
 
 ```typescript
 +warn(msg?: any): void
@@ -86,7 +86,7 @@ Logs a warning message to the msg. This methid is mostly the same as `console.wa
 
 ### +error([msg])
 
-Logs a warning message to the msg. This methid is mostly the same as `console.error()`.
+Logs a warning message to the msg. This methid is mostly the same as [`console.error()`](https://docs.scriptable.app/console/#error)
 
 ```typescript
 +error(msg?: any): void
