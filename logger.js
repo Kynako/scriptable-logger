@@ -14,7 +14,8 @@
  * @package
  */
 const ERR_MSGS = {
-  NOT_STRING: name => `The type of '${name}' should be String.`
+  INVALID_TYPE: (name, expected, an=false) => `Supplied ${name} is not ${an ? 'n' : ''} ${expected}.`,
+  TIMER_NOT_EXIST: label => `Timer '${label} doesn't exst.`
 };
 
 /**
@@ -157,7 +158,9 @@ module.exports = class Logger {
    */
   static count = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(ERR_MSGS.NOT_STRING('label'));
+      throw new TypeError(
+        ERR_MSGS.INVALID_TYPE('label', 'String')
+      );
     };
     let count = this.#counter.get(label) ?? 0;
     this.log(label + ': ' + ++count);
@@ -172,7 +175,9 @@ module.exports = class Logger {
    */
   static countReset = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(ERROR_MEGS.NOT_STRING('label'));
+      throw new TypeError(
+        ERROR_MSGS.INVALID_TYPE('label', 'String')
+      );
     };
     this.#counter.set(label, 0);
     this.log(label + ': ' + 0);
@@ -186,7 +191,9 @@ module.exports = class Logger {
    */
   static time = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(ERR_MSGS.NOT_STRING('label'));
+      throw new TypeError(
+        ERR_MSGS.INVALID_TYPE('label', 'String')
+      );
     };
     
     this.#timer.set(label, Date.now());
@@ -200,11 +207,15 @@ module.exports = class Logger {
    */
   static timeLog = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(ERR_MSGS.NOT_STRING('label'));
+      throw new TypeError(
+        ERR_MSGS.IMVALID_TYPE('label', 'String')
+      );
     };
     const time = this.#timer.get(label);
     if(!time) {
-      throw new Error(`Timer '${label}' doesn\'t exist.`);
+      throw new Error(
+        ERR_MSGS.TIMER_NOT_EXIST(label)
+      );
     };
     const elapsed = Date.now() - time;
     this.log(label + ': ' + elapsed + 'ms');
@@ -218,10 +229,14 @@ module.exports = class Logger {
    */
   static timeEnd = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(ERR_MSGS.NOT_STRING('label'));
+      throw new TypeError(
+        ERR_MSGS.INVALID_TYPE('label', 'String')
+      );
     };
     const time = this.#timer.get(label);
-    if(!time) throw new Error('Logger.time() must be runned before running Logger.timeEnd().');
+    if(!time) {
+      throw new Error(ERR_MSGS.TIMER_NOT_EXIST(label));
+    };
     const elapsed = Date.now() - time;
     this.log(label + ': ' + elapsed + 'ms');
     this.#timer.delete(label);
