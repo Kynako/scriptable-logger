@@ -148,7 +148,7 @@ module.exports = class Logger {
    */
   static count = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("'label' should be String.");
+      throw new TypeError("The type of 'label' should be String.");
     };
     let count = this.#counter.get(label) ?? 0;
     this.log(label + ': ' + ++count);
@@ -163,7 +163,7 @@ module.exports = class Logger {
    */
   static countReset = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("'label' should be String.");
+      throw new TypeError("The tpye of 'label' should be String.");
     };
     this.#counter.set(label, 0);
     this.log(label + ': ' + 0);
@@ -177,7 +177,7 @@ module.exports = class Logger {
    */
   static time = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("Tyoe of 'label' should be String.");
+      throw new TypeError("The type of 'label' should be String.");
     };
     
     this.#timer.set(label, Date.now());
@@ -191,7 +191,7 @@ module.exports = class Logger {
    */
   static timeLog = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("Type of 'label' should be String.");
+      throw new TypeError("The type of 'label' should be String.");
     };
     const time = this.#timer.get(label);
     if(!time) {
@@ -209,7 +209,7 @@ module.exports = class Logger {
    */
   static timeEnd = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("Type of 'label' should be String.");
+      throw new TypeError("The type of 'label' should be String.");
     };
     const time = this.#timer.get(label);
     if(!time) throw new Error('Logger.time() must be runned before running Logger.timeEnd().');
