@@ -163,7 +163,7 @@ module.exports = class Logger {
    */
   static countReset = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("The tpye of 'label' should be String.");
+      throw new TypeError("The typo of 'label' should be String.");
     };
     this.#counter.set(label, 0);
     this.log(label + ': ' + 0);
