@@ -9,6 +9,15 @@
  */
 
 /**
+ * ERR_MSGS
+ * @constant {{String: String|Function}}
+ * @package
+ */
+const ERR_MSGS = {
+  NOT_STRING: name => `The type of '${name}' should be String.`
+};
+
+/**
  * Logger
  * @class
  * @description 
@@ -148,7 +157,7 @@ module.exports = class Logger {
    */
   static count = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("The type of 'label' should be String.");
+      throw new TypeError(ERR_MSGS.NOT_STRING('label'));
     };
     let count = this.#counter.get(label) ?? 0;
     this.log(label + ': ' + ++count);
@@ -163,7 +172,7 @@ module.exports = class Logger {
    */
   static countReset = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("The typo of 'label' should be String.");
+      throw new TypeError(ERROR_MEGS.NOT_STRING('label'));
     };
     this.#counter.set(label, 0);
     this.log(label + ': ' + 0);
@@ -177,7 +186,7 @@ module.exports = class Logger {
    */
   static time = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("The type of 'label' should be String.");
+      throw new TypeError(ERR_MSGS.NOT_STRING('label'));
     };
     
     this.#timer.set(label, Date.now());
@@ -191,7 +200,7 @@ module.exports = class Logger {
    */
   static timeLog = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("The type of 'label' should be String.");
+      throw new TypeError(ERR_MSGS.NOT_STRING('label'));
     };
     const time = this.#timer.get(label);
     if(!time) {
@@ -209,7 +218,7 @@ module.exports = class Logger {
    */
   static timeEnd = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError("The type of 'label' should be String.");
+      throw new TypeError(ERR_MSGS.NOT_STRING('label'));
     };
     const time = this.#timer.get(label);
     if(!time) throw new Error('Logger.time() must be runned before running Logger.timeEnd().');
