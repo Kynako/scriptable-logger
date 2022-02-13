@@ -41,14 +41,14 @@ module.exports = class Logger {
   static #groupIndentationCount = 0;
   
   /**
-   * @property {Map} #counter
+   * @property {Map<K, V>} #counter
    * @static
    * @private
    */
   static #counter = new Map();
   
   /**
-   * @property {Map} #timer
+   * @property {Map<K, V>} #timer
    * @static
    * @private
    */
