@@ -8,15 +8,10 @@
  * @version 1.0.1
  */
 
-/**
- * ERR_MSGS
- * @constant {{String: String|Function}}
- * @package
- */
-const ERR_MSGS = {
-  INVALID_TYPE: (name, expected, an=false) => `Supplied ${name} is not ${an ? 'an' : 'a'} ${expected}.`,
-  TIMER_NOT_EXIST: label => `Timer '${label} doesn't exist.`
-};
+const {
+  ErrorMessages: ERR_MSGS,
+  LGRError,
+} = importModule('./errors/index.js');
 
 /**
  * Logger
@@ -158,7 +153,7 @@ module.exports = class Logger {
    */
   static count = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERR_MSGS.INVALID_TYPE('label', 'String')
       );
     };
@@ -175,7 +170,7 @@ module.exports = class Logger {
    */
   static countReset = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERROR_MSGS.INVALID_TYPE('label', 'String')
       );
     };
@@ -191,7 +186,7 @@ module.exports = class Logger {
    */
   static time = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERR_MSGS.INVALID_TYPE('label', 'String')
       );
     };
@@ -207,13 +202,13 @@ module.exports = class Logger {
    */
   static timeLog = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERR_MSGS.IMVALID_TYPE('label', 'String')
       );
     };
     const time = this.#timer.get(label);
     if(!time) {
-      throw new Error(
+      throw new LGRError(
         ERR_MSGS.TIMER_NOT_EXIST(label)
       );
     };
@@ -229,13 +224,13 @@ module.exports = class Logger {
    */
   static timeEnd = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERR_MSGS.INVALID_TYPE('label', 'String')
       );
     };
     const time = this.#timer.get(label);
     if(!time) {
-      throw new Error(ERR_MSGS.TIMER_NOT_EXIST(label));
+      throw new LGRError(ERR_MSGS.TIMER_NOT_EXIST(label));
     };
     const elapsed = Date.now() - time;
     this.log(label + ': ' + elapsed + 'ms');
