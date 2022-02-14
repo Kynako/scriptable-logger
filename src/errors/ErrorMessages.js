@@ -1,3 +1,4 @@
+'use strict';
 /**
  * ERR_MSGS
  * @constant {{String: String|Function}}
@@ -8,4 +9,4 @@ const ERR_MSGS = {
   TIMER_NOT_EXIST: label => `Timer '${label} doesn't exist.`
 };
 
-module.exports = ERR_MSGS
+module.exports = ERR_MSGS;
