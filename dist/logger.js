@@ -19,6 +19,26 @@ const ERR_MSGS = {
 };
 
 /**
+ * LGRError
+ * @class
+ * @extends Error
+ * @param {any} msg
+ */
+class LGRError extends Error {
+  
+  /**
+   * constructor(msg)
+   * @constructor
+   * @param {String} msg
+   * @return {LRGError}
+   */
+  constructor(msg) {
+    super(msg);
+    this.name = this.constructor.name;
+  };
+};
+
+/**
  * Logger
  * @class
  * @description 
@@ -158,7 +178,7 @@ module.exports = class Logger {
    */
   static count = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERR_MSGS.INVALID_TYPE('label', 'String')
       );
     };
@@ -175,7 +195,7 @@ module.exports = class Logger {
    */
   static countReset = (label = 'default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERROR_MSGS.INVALID_TYPE('label', 'String')
       );
     };
@@ -191,7 +211,7 @@ module.exports = class Logger {
    */
   static time = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERR_MSGS.INVALID_TYPE('label', 'String')
       );
     };
@@ -207,13 +227,13 @@ module.exports = class Logger {
    */
   static timeLog = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERR_MSGS.IMVALID_TYPE('label', 'String')
       );
     };
     const time = this.#timer.get(label);
     if(!time) {
-      throw new Error(
+      throw new LGRError(
         ERR_MSGS.TIMER_NOT_EXIST(label)
       );
     };
@@ -229,13 +249,15 @@ module.exports = class Logger {
    */
   static timeEnd = (label='default') => {
     if(typeof label !== 'string') {
-      throw new TypeError(
+      throw new LGRError(
         ERR_MSGS.INVALID_TYPE('label', 'String')
       );
     };
     const time = this.#timer.get(label);
     if(!time) {
-      throw new Error(ERR_MSGS.TIMER_NOT_EXIST(label));
+      throw new LGRError(
+        ERR_MSGS.TIMER_NOT_EXIST(label)
+      );
     };
     const elapsed = Date.now() - time;
     this.log(label + ': ' + elapsed + 'ms');
