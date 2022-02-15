@@ -75,6 +75,17 @@ module.exports = class Logger {
     };
   
   /**
+   * +$log([msg])
+   * @method
+   * @static
+   * @public
+   * @param {any} [msg]
+   */
+  static $log = (msg) => {
+    _scriptable_log(msg);
+  };
+  
+  /**
    * +log([msg])
    * @method
    * @static
@@ -82,9 +93,18 @@ module.exports = class Logger {
    * @param {any} [msg]
    */
   static log = (msg) => {
-    _scriptable_log(
-      this.#createLogMessage(msg)
-    );
+    this.$log(this.#createLogMessage(msg));
+  };
+  
+  /**
+   * +$warn([msg])
+   * @method
+   * @static
+   * @public
+   * @param {any} [msg]
+   */
+  static $warn = (msg) => {
+    _scriptable_logWarning(msg);
   };
   
   /**
@@ -95,9 +115,18 @@ module.exports = class Logger {
    * @param {any} [msg]
    */
   static warn = (msg) => {
-    _scriptable_logWarning(
-      this.#createLogMessage(msg)
-    );
+    this.$warn(this.#createLogMessage(msg));
+  };
+  
+  /**
+   * +warn([msg])
+   * @method
+   * @static
+   * @public
+   * @param {any} [msg]
+   */
+  static $error = (msg) => {
+    _scriptable_logError(msg);
   };
   
   /**
@@ -108,9 +137,7 @@ module.exports = class Logger {
    * @param {any} [msg]
    */
   static error = (msg) => {
-    _scriptable_logError(
-      this.#createLogMessage(msg)
-    );
+    this.$error(this.#createLogMessage(msg));
   };
   
   /**
