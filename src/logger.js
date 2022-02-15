@@ -230,7 +230,9 @@ module.exports = class Logger {
     };
     const time = this.#timer.get(label);
     if(!time) {
-      throw new LGRError(ERR_MSGS.TIMER_NOT_EXIST(label));
+      throw new LGRError(
+        ERR_MSGS.TIMER_NOT_EXIST(label)
+      );
     };
     const elapsed = Date.now() - time;
     this.log(label + ': ' + elapsed + 'ms');
