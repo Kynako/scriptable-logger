@@ -5,7 +5,7 @@
  * @author Kynako
  * @license MIT license
  * @see https://github.com/Kynako/scriptable-logger
- * @version 1.0.1
+ * @version 1.1.0
  */
 
 const {
