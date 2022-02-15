@@ -5,9 +5,12 @@
 - [Properties](#properties)
   - [+groupIndentation](#groupindentation)
 - [Methods](#methods)
+  - <a href="#+$logmsg">$log([msg])</a>
   - [+log([msg])](#logmsg)
   - [+warn([msg])](#warnmsg)
+  - <a href="#+$warnmsg">+$warn([msg])</a>
   - [+error([msg])](#errormsg)
+  - <a href="#+$errormsg">+$error([msg])</a>
   - [+assert(assertion[, msg])](#assertassertion-msg)
   - [+group()](#group)
   - [+groupEnd()](#groupend)
@@ -34,12 +37,62 @@ Indicates the number of space characters to use as white space for indenting pur
 
 ## Methods
 
+<h3 id="+$logmsg">+$log([msg])</h3>
+
+Logs a message to the console. This method is an alias for `_scriptable_log()` and is mostly the same as it.
+
+```typescript
++$log(msg?: any): void
+```
+
+<table>
+  <tr>
+    <th>PARAMETER</th>
+    <th>TYPE</th>
+    <th>OPTIONAL</th>
+    <th>DESCRIPTION</th>
+  </tr>
+  <tr>
+    <td>data</td>
+    <td>String</td>
+    <td>&#9745;</td>
+    <td>Message to the console.</td>
+  </tr>
+</table>
+
+---
+
 ### +log([msg])
 
 Logs a message to the console. This method is mostly the same as [`console.log()`](https://docs.scriptable.app/console/#log).
 
 ```typescript
 +log(msg?: any): void
+```
+
+<table>
+  <tr>
+    <th>PARAMETER</th>
+    <th>TYPE</th>
+    <th>OPTIONAL</th>
+    <th>DESCRIPTION</th>
+  </tr>
+  <tr>
+    <td>data</td>
+    <td>String</td>
+    <td>&#9745;</td>
+    <td>Message to the console.</td>
+  </tr>
+</table>
+
+---
+
+<h3 id="+$warnmsg">+$warn([msg])</h3>
+
+Logs a warning message to the console. This method is an alias for `_scriptable_logWarining()` and is mostly the same as it.
+
+```typescript
++$warn(msg?: any): void
 ```
 
 <table>
@@ -77,6 +130,31 @@ Logs a warning message to the msg. This methid is mostly the same as [`console.w
   <tr>
     <td>data</td>
     <td>any</td>
+    <td>&#9745;</td>
+    <td>Message to the console.</td>
+  </tr>
+</table>
+
+---
+
+<h3 id="+$errormsg">+$error([msg])</h3>
+
+Logs a error message to the console. This method is an alias for `_scriptable_logError()` and mostly the same as it.
+
+```typescript
++$error(msg?: any): void
+```
+
+<table>
+  <tr>
+    <th>PARAMETER</th>
+    <th>TYPE</th>
+    <th>OPTIONAL</th>
+    <th>DESCRIPTION</th>
+  </tr>
+  <tr>
+    <td>data</td>
+    <td>String</td>
     <td>&#9745;</td>
     <td>Message to the console.</td>
   </tr>
